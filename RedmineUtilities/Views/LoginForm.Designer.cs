@@ -31,7 +31,7 @@
             this.tbUsername = new System.Windows.Forms.TextBox();
             this.tbPassword = new System.Windows.Forms.TextBox();
             this.btnLogin = new System.Windows.Forms.Button();
-            this.lbUsername = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.cbAutoLogin = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
@@ -61,14 +61,14 @@
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
-            // lbUsername
+            // label1
             // 
-            this.lbUsername.AutoSize = true;
-            this.lbUsername.Location = new System.Drawing.Point(55, 91);
-            this.lbUsername.Name = "lbUsername";
-            this.lbUsername.Size = new System.Drawing.Size(55, 13);
-            this.lbUsername.TabIndex = 5;
-            this.lbUsername.Text = "Username";
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(55, 91);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(55, 13);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Username";
             // 
             // label2
             // 
@@ -96,7 +96,7 @@
             this.ClientSize = new System.Drawing.Size(526, 326);
             this.Controls.Add(this.cbAutoLogin);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.lbUsername);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.tbPassword);
             this.Controls.Add(this.tbUsername);
@@ -111,7 +111,7 @@
         private System.Windows.Forms.TextBox tbUsername;
         private System.Windows.Forms.TextBox tbPassword;
         private System.Windows.Forms.Button btnLogin;
-        private System.Windows.Forms.Label lbUsername;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox cbAutoLogin;
     }

@@ -35,9 +35,13 @@ namespace RedmineUtilities.Views
                 var APIKey = user.api_key;
                 if (cbAutoLogin.Checked)
                 {
-                    RegistryUtilities.createValue("CurrentUser", APIKey);
+                    RegistryUtilities.createValue(Constants.REGISTRY_CURRENT_USER, APIKey);
                 }
-                else RegistryUtilities.createValue("CurrentUser", "");
+                else RegistryUtilities.createValue(Constants.REGISTRY_CURRENT_USER, "");
+                ListProjectsWindow listProjectsWindow = new ListProjectsWindow(user.api_key);
+                listProjectsWindow.Show();
+                Close();
+                
             }
         }
     }

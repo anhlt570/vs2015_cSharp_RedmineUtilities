@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace RedmineUtilities
 {
-    class Constants
+    static class Constants
     {
+        public const string REGISTRY_CURRENT_USER = "CurrentUser";
     }
 }

@@ -19,10 +19,14 @@ namespace RedmineUtilities.Controllers
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LoginForm());
+            string currentUser = RegistryUtilities.getStringValue(Constants.REGISTRY_CURRENT_USER);
+            if (string.IsNullOrEmpty(currentUser))
+            {
+                Application.Run(new LoginForm());
+            }
+            else Application.Run(new ListProjectsWindow(currentUser));
+            
             NetworkUtils.RunAsync();
         }
-
-     
     }
 }

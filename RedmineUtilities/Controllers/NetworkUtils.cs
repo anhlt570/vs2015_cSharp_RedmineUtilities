@@ -30,6 +30,8 @@ namespace RedmineUtilities.Controllers
             {
                 UserResponse userResponse = await response.Content.ReadAsAsync<UserResponse>();
                 user = userResponse.user;
+                Console.WriteLine(user.api_key);
+                client.DefaultRequestHeaders.Add("X-Redmine-API-Key", user.api_key);
                 basicClient.CancelPendingRequests();
             }
             return user;

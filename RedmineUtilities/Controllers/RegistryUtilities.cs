@@ -9,15 +9,40 @@ namespace RedmineUtilities.Controllers
 {
     class RegistryUtilities
     {
-        public static void createValue(string key, string value)
+        public static void createValue(string name, string value)
         {
-            RegistryKey registryKey = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\RedmineUtilities");
+            RegistryKey registryKey = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\RedmineUtilities",true);
             if(registryKey == null)
             {
                 registryKey = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\RedmineUtilities");
             }
-            registryKey.SetValue(key, value);
+            registryKey.SetValue(name, value);
             registryKey.Close();
         }
+
+        public static string getStringValue(string name)
+        {
+            RegistryKey registryKey = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\RedmineUtilities");
+            if (registryKey == null)
+            {
+                return "";
+            }
+            return (string)registryKey.GetValue(name);
+        }
+
+        public static void removeValue(string name)
+        {
+            RegistryKey registryKey = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\RedmineUtilities",true);
+            if (registryKey == null)
+            {
+                return;
+            }
+            if (registryKey.GetValue(name) != null)
+            {
+                registryKey.SetValue(name, "");
+            }
+            registryKey.Close();
+        }
+
     }
 }
