@@ -13,20 +13,15 @@ namespace RedmineUtilities.Controllers
 {
     static class Program
     {
-     
+
         [STAThread]
         static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            string currentUser = RegistryUtilities.getStringValue(Constants.REGISTRY_CURRENT_USER);
-            if (string.IsNullOrEmpty(currentUser))
-            {
-                Application.Run(new LoginForm());
-            }
-            else Application.Run(new ListProjectsWindow(currentUser));
-            
-            NetworkUtils.RunAsync();
+            NetworkUtils.getInstance().RunAsync();
+
+            Application.Run(new HomeWindow(RegistryUtils.getStringValue(Constants.REGISTRY_CURRENT_USER)));
         }
     }
 }

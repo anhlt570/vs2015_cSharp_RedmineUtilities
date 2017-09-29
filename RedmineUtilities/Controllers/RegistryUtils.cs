@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RedmineUtilities.Controllers
 {
-    class RegistryUtilities
+    class RegistryUtils
     {
         public static void createValue(string name, string value)
         {

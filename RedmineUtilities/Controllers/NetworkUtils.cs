@@ -9,15 +9,31 @@ namespace RedmineUtilities.Controllers
 {
     class NetworkUtils
     {
-        static HttpClient client = new HttpClient();
-        public static async Task RunAsync()
+        public HttpClient client = new HttpClient();
+        private static NetworkUtils instance = null;
+        public static NetworkUtils getInstance()
         {
-            client.BaseAddress = new Uri("");
+            if (instance == null)
+            {
+                instance = new NetworkUtils();
+            }
+            return instance;
+        }
+
+        public async Task RunAsync()
+        {
+            client.BaseAddress = new Uri("https://redmine.ntq.solutions");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-        public static async Task<User> GetUserAsync(string username, string password)
+        public void addHeaderKey(string key, string value)
+        {
+            client.DefaultRequestHeaders.Remove(key);
+            client.DefaultRequestHeaders.Add(key, value);
+        }
+
+        public async Task<User> GetUserAsync(string username, string password)
         {
             HttpClient basicClient = new HttpClient();
             var authorizationStr = username + ":" + password;
@@ -31,10 +47,34 @@ namespace RedmineUtilities.Controllers
                 UserResponse userResponse = await response.Content.ReadAsAsync<UserResponse>();
                 user = userResponse.user;
                 Console.WriteLine(user.api_key);
-                client.DefaultRequestHeaders.Add("X-Redmine-API-Key", user.api_key);
+                addHeaderKey("X-Redmine-API-Key", user.api_key);
                 basicClient.CancelPendingRequests();
             }
             return user;
+        }
+
+        public async Task<User> GetUserAsync()
+        {
+            User user = null;
+            HttpResponseMessage response = await client.GetAsync("/users/current.json");
+            if (response.IsSuccessStatusCode)
+            {
+                UserResponse userResponse = await response.Content.ReadAsAsync<UserResponse>();
+                user = userResponse.user;
+            }
+            return user;
+        }
+
+        public async Task<Project[]> getProjectsAsync()
+        {
+            Project[] projects = null;
+            HttpResponseMessage response = await client.GetAsync("/projects.json");
+            if (response.IsSuccessStatusCode)
+            {
+                ProjectResponse projectResponse = await response.Content.ReadAsAsync<ProjectResponse>();
+                projects = projectResponse.projects;
+            }
+            return projects;
         }
     }
 }
