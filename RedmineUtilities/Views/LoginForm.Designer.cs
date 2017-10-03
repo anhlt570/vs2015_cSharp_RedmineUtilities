@@ -113,6 +113,7 @@
             this.ClientSize = new System.Drawing.Size(478, 313);
             this.Controls.Add(this.panelLogin);
             this.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "LoginForm";

@@ -1,4 +1,5 @@
-﻿using RedmineUtilities.Models.user_model;
+﻿using RedmineUtilities.Models.project_model;
+using RedmineUtilities.Models.user_model;
 using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -71,10 +72,22 @@ namespace RedmineUtilities.Controllers
             HttpResponseMessage response = await client.GetAsync("/projects.json");
             if (response.IsSuccessStatusCode)
             {
-                ProjectResponse projectResponse = await response.Content.ReadAsAsync<ProjectResponse>();
+                ProjectsResponse projectResponse = await response.Content.ReadAsAsync<ProjectsResponse>();
                 projects = projectResponse.projects;
             }
             return projects;
+        }
+
+        public async Task<Project> getProjectsAsync(int projectID)
+        {
+            Project project = null;
+            HttpResponseMessage response = await client.GetAsync("/projects.json?project_id= "+ projectID);
+            if (response.IsSuccessStatusCode)
+            {
+                ProjectResponse projectResponse = await response.Content.ReadAsAsync<ProjectResponse>();
+                project = projectResponse.project;
+            }
+            return project;
         }
     }
 }

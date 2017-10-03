@@ -21,6 +21,21 @@ namespace RedmineUtilities.Views
         public string userId;
         private async void btnLogin_Click(object sender, EventArgs e)
         {
+            performLoginAsync();
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Enter)
+            {
+                performLoginAsync();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        public async Task performLoginAsync()
+        {
             var username = tbUsername.Text;
             var password = tbPassword.Text;
             User user = null;
