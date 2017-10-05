@@ -1,5 +1,5 @@
 ﻿using RedmineUtilities.Controllers;
-using RedmineUtilities.Models.user_model;
+using RedmineUtilities.Models.user_models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

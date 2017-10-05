@@ -1,6 +1,8 @@
-﻿using RedmineUtilities.Models.project_model;
-using RedmineUtilities.Models.user_model;
+﻿using RedmineUtilities.Models.issue_models;
+using RedmineUtilities.Models.project_models;
+using RedmineUtilities.Models.user_models;
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -66,7 +68,7 @@ namespace RedmineUtilities.Controllers
             return user;
         }
 
-        public async Task<Project[]> getProjectsAsync()
+        public async Task<Project[]> GetProjectsAsync()
         {
             Project[] projects = null;
             HttpResponseMessage response = await client.GetAsync("/projects.json");
@@ -78,7 +80,7 @@ namespace RedmineUtilities.Controllers
             return projects;
         }
 
-        public async Task<Project> getProjectsAsync(int projectID)
+        public async Task<Project> GetProjectsAsync(int projectID)
         {
             Project project = null;
             HttpResponseMessage response = await client.GetAsync("/projects.json?project_id= "+ projectID);
@@ -88,6 +90,20 @@ namespace RedmineUtilities.Controllers
                 project = projectResponse.project;
             }
             return project;
+        }
+
+        public async Task<List<Issue>> GetIssuesAsync()
+        {
+            List<Issue> issues = null;
+            HttpResponseMessage response = await client.GetAsync("/issues.json");
+            if (response.IsSuccessStatusCode)
+            {
+                IssuesResponse issuesResponse =  await response.Content.ReadAsAsync<IssuesResponse>();
+                issues = issuesResponse.issues;
+                string s = await response.Content.ReadAsStringAsync();
+                Console.WriteLine(s);
+            }
+            return issues;
         }
     }
 }

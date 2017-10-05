@@ -34,9 +34,16 @@
             this.filterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.projectsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.assignToToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.llUsername = new System.Windows.Forms.LinkLabel();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.listProjects = new System.Windows.Forms.ListBox();
+            this.lvIssues = new System.Windows.Forms.ListView();
+            this.cStatus = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.cName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -86,35 +93,72 @@
             this.assignToToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
             this.assignToToolStripMenuItem.Text = "Assign to";
             // 
-            // llUsername
+            // splitContainer1
             // 
-            this.llUsername.AutoSize = true;
-            this.llUsername.Location = new System.Drawing.Point(785, 9);
-            this.llUsername.Name = "llUsername";
-            this.llUsername.Size = new System.Drawing.Size(0, 13);
-            this.llUsername.TabIndex = 2;
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 24);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.AutoScroll = true;
+            this.splitContainer1.Panel1.Controls.Add(this.listProjects);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.lvIssues);
+            this.splitContainer1.Size = new System.Drawing.Size(974, 427);
+            this.splitContainer1.SplitterDistance = 220;
+            this.splitContainer1.TabIndex = 2;
             // 
             // listProjects
             // 
+            this.listProjects.Dock = System.Windows.Forms.DockStyle.Top;
             this.listProjects.FormattingEnabled = true;
-            this.listProjects.Location = new System.Drawing.Point(12, 27);
+            this.listProjects.Location = new System.Drawing.Point(0, 0);
             this.listProjects.Name = "listProjects";
-            this.listProjects.Size = new System.Drawing.Size(264, 407);
-            this.listProjects.TabIndex = 3;
+            this.listProjects.Size = new System.Drawing.Size(220, 160);
+            this.listProjects.TabIndex = 0;
+            this.listProjects.SelectedIndexChanged += new System.EventHandler(this.listProjects_SelectedIndexChanged);
+            // 
+            // lvIssues
+            // 
+            this.lvIssues.AutoArrange = false;
+            this.lvIssues.CheckBoxes = true;
+            this.lvIssues.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.cStatus,
+            this.cName});
+            this.lvIssues.GridLines = true;
+            this.lvIssues.Location = new System.Drawing.Point(3, 3);
+            this.lvIssues.Name = "lvIssues";
+            this.lvIssues.Size = new System.Drawing.Size(747, 421);
+            this.lvIssues.TabIndex = 0;
+            this.lvIssues.UseCompatibleStateImageBehavior = false;
+            // 
+            // cStatus
+            // 
+            this.cStatus.Text = "Status";
+            // 
+            // cName
+            // 
+            this.cName.Text = "Name";
             // 
             // HomeWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(974, 451);
-            this.Controls.Add(this.listProjects);
-            this.Controls.Add(this.llUsername);
+            this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "HomeWindow";
             this.Text = "Home";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -126,8 +170,11 @@
         private System.Windows.Forms.ToolStripMenuItem filterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem projectsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem assignToToolStripMenuItem;
-        private System.Windows.Forms.LinkLabel llUsername;
         private System.Windows.Forms.ToolStripMenuItem mLogout;
+        private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.ListBox listProjects;
+        private System.Windows.Forms.ListView lvIssues;
+        public System.Windows.Forms.ColumnHeader cStatus;
+        private System.Windows.Forms.ColumnHeader cName;
     }
 }

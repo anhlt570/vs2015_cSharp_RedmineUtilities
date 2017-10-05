@@ -1,6 +1,10 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace RedmineUtilities.Models.user_model
+namespace RedmineUtilities.Models.user_models
 {
     class User
     {
@@ -12,5 +16,10 @@ namespace RedmineUtilities.Models.user_model
         public string created_on { get; set; }
         public string last_login_on { get; set; }
         public string api_key { get; set; }
+    }
+
+    class UserResponse
+    {
+        public User user { get; set; }
     }
 }

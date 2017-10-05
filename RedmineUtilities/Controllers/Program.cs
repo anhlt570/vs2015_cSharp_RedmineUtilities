@@ -1,5 +1,4 @@
 ﻿using RedmineUtilities.Models;
-using RedmineUtilities.Models.user_model;
 using RedmineUtilities.Views;
 using System;
 using System.Net;
