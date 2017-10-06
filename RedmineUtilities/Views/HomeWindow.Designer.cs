@@ -38,7 +38,7 @@
             this.listProjects = new System.Windows.Forms.ListBox();
             this.lvIssues = new System.Windows.Forms.ListView();
             this.cStatus = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.cName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.cSubject = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -108,7 +108,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.lvIssues);
             this.splitContainer1.Size = new System.Drawing.Size(974, 427);
-            this.splitContainer1.SplitterDistance = 220;
+            this.splitContainer1.SplitterDistance = 218;
             this.splitContainer1.TabIndex = 2;
             // 
             // listProjects
@@ -117,31 +117,37 @@
             this.listProjects.FormattingEnabled = true;
             this.listProjects.Location = new System.Drawing.Point(0, 0);
             this.listProjects.Name = "listProjects";
-            this.listProjects.Size = new System.Drawing.Size(220, 160);
+            this.listProjects.Size = new System.Drawing.Size(218, 160);
             this.listProjects.TabIndex = 0;
             this.listProjects.SelectedIndexChanged += new System.EventHandler(this.listProjects_SelectedIndexChanged);
             // 
             // lvIssues
             // 
+            this.lvIssues.AllowColumnReorder = true;
+            this.lvIssues.AllowDrop = true;
+            this.lvIssues.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lvIssues.AutoArrange = false;
             this.lvIssues.CheckBoxes = true;
             this.lvIssues.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.cStatus,
-            this.cName});
+            this.cSubject});
             this.lvIssues.GridLines = true;
             this.lvIssues.Location = new System.Drawing.Point(3, 3);
             this.lvIssues.Name = "lvIssues";
             this.lvIssues.Size = new System.Drawing.Size(747, 421);
             this.lvIssues.TabIndex = 0;
             this.lvIssues.UseCompatibleStateImageBehavior = false;
+            this.lvIssues.View = System.Windows.Forms.View.Details;
             // 
             // cStatus
             // 
             this.cStatus.Text = "Status";
             // 
-            // cName
+            // cSubject
             // 
-            this.cName.Text = "Name";
+            this.cSubject.Text = "Subject";
             // 
             // HomeWindow
             // 
@@ -175,6 +181,6 @@
         private System.Windows.Forms.ListBox listProjects;
         private System.Windows.Forms.ListView lvIssues;
         public System.Windows.Forms.ColumnHeader cStatus;
-        private System.Windows.Forms.ColumnHeader cName;
+        public System.Windows.Forms.ColumnHeader cSubject;
     }
 }

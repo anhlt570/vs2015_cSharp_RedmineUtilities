@@ -53,6 +53,7 @@ namespace RedmineUtilities.Views
                 }
                 else RegistryUtils.createValue(Constants.REGISTRY_CURRENT_USER, "");
                 userId = user.api_key;
+                NetworkUtils.getInstance().addHeaderKey("X-Redmine-API-Key", userId);
                 Close();
             }
         }

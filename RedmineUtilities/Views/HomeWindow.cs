@@ -37,7 +37,8 @@ namespace RedmineUtilities.Views
             Project[] projects;
             projects = await NetworkUtils.getInstance().GetProjectsAsync();
             if (projects == null || projects.Length == 0) {
-                MessageBox.Show("There are something wrong");
+                LoginForm loginForm = new LoginForm();
+                loginForm.Show(this);
                 return;
             }
             foreach(Project project in projects)
@@ -51,12 +52,17 @@ namespace RedmineUtilities.Views
             List<Issue> issues= await NetworkUtils.getInstance().GetIssuesAsync();
             if (issues == null || issues.Count == 0)
             {
-                MessageBox.Show("There are something wrong");
+                LoginForm loginForm = new LoginForm();
+                loginForm.Show(this);
                 return;
             }
             foreach (Issue issue in issues)
             {
-                Invoke((MethodInvoker)(() => lvIssues.Items.Add(issue.status.name).SubItems.Add(issue.subject)));
+                Invoke((MethodInvoker)(() => {
+                    string[] row = { issue.status.name, issue.subject};
+                    ListViewItem item = new ListViewItem(row);
+                    lvIssues.Items.Add(item);
+                }));
             }
         }
     }

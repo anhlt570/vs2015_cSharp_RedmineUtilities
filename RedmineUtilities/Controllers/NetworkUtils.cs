@@ -88,6 +88,8 @@ namespace RedmineUtilities.Controllers
             {
                 ProjectResponse projectResponse = await response.Content.ReadAsAsync<ProjectResponse>();
                 project = projectResponse.project;
+                string s = await response.Content.ReadAsStringAsync();
+                Console.WriteLine("anhlt"+s);
             }
             return project;
         }
@@ -95,13 +97,13 @@ namespace RedmineUtilities.Controllers
         public async Task<List<Issue>> GetIssuesAsync()
         {
             List<Issue> issues = null;
-            HttpResponseMessage response = await client.GetAsync("/issues.json");
+            HttpResponseMessage response = await client.GetAsync("/issues.json?limit=100");
             if (response.IsSuccessStatusCode)
             {
                 IssuesResponse issuesResponse =  await response.Content.ReadAsAsync<IssuesResponse>();
                 issues = issuesResponse.issues;
                 string s = await response.Content.ReadAsStringAsync();
-                Console.WriteLine(s);
+                Console.WriteLine("anhlt" + s);
             }
             return issues;
         }
