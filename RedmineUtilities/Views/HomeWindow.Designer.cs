@@ -1,4 +1,7 @@
-﻿namespace RedmineUtilities.Views
+﻿using RedmineUtilities.Models.project_models;
+using System.Collections.Generic;
+
+namespace RedmineUtilities.Views
 {
     partial class HomeWindow
     {
@@ -39,6 +42,7 @@
             this.lvIssues = new System.Windows.Forms.ListView();
             this.cStatus = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.cSubject = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btnRmAll = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -128,15 +132,17 @@
             this.lvIssues.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lvIssues.AutoArrange = false;
             this.lvIssues.CheckBoxes = true;
             this.lvIssues.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.cStatus,
             this.cSubject});
+            this.lvIssues.FullRowSelect = true;
             this.lvIssues.GridLines = true;
             this.lvIssues.Location = new System.Drawing.Point(3, 3);
+            this.lvIssues.MultiSelect = false;
             this.lvIssues.Name = "lvIssues";
             this.lvIssues.Size = new System.Drawing.Size(747, 421);
+            this.lvIssues.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.lvIssues.TabIndex = 0;
             this.lvIssues.UseCompatibleStateImageBehavior = false;
             this.lvIssues.View = System.Windows.Forms.View.Details;
@@ -148,12 +154,24 @@
             // cSubject
             // 
             this.cSubject.Text = "Subject";
+            this.cSubject.Width = 342;
+            // 
+            // btnRmAll
+            // 
+            this.btnRmAll.Location = new System.Drawing.Point(669, 1);
+            this.btnRmAll.Name = "btnRmAll";
+            this.btnRmAll.Size = new System.Drawing.Size(75, 23);
+            this.btnRmAll.TabIndex = 3;
+            this.btnRmAll.Text = "Remove All";
+            this.btnRmAll.UseVisualStyleBackColor = true;
+            this.btnRmAll.Click += new System.EventHandler(this.btnRmAll_Click);
             // 
             // HomeWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(974, 451);
+            this.Controls.Add(this.btnRmAll);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -182,5 +200,6 @@
         private System.Windows.Forms.ListView lvIssues;
         public System.Windows.Forms.ColumnHeader cStatus;
         public System.Windows.Forms.ColumnHeader cSubject;
+        private System.Windows.Forms.Button btnRmAll;
     }
 }

@@ -68,14 +68,18 @@ namespace RedmineUtilities.Controllers
             return user;
         }
 
-        public async Task<Project[]> GetProjectsAsync()
+        public async Task<List<Project>> GetProjectsAsync()
         {
-            Project[] projects = null;
+            List<Project> projects = null;
             HttpResponseMessage response = await client.GetAsync("/projects.json");
             if (response.IsSuccessStatusCode)
             {
                 ProjectsResponse projectResponse = await response.Content.ReadAsAsync<ProjectsResponse>();
                 projects = projectResponse.projects;
+            }
+        else
+            {
+                projects = new List<Project>();
             }
             return projects;
         }
@@ -88,22 +92,35 @@ namespace RedmineUtilities.Controllers
             {
                 ProjectResponse projectResponse = await response.Content.ReadAsAsync<ProjectResponse>();
                 project = projectResponse.project;
-                string s = await response.Content.ReadAsStringAsync();
-                Console.WriteLine("anhlt"+s);
+                //string s = await response.Content.ReadAsStringAsync();
+                //Console.WriteLine("anhlt"+s);
             }
             return project;
         }
 
-        public async Task<List<Issue>> GetIssuesAsync()
+        public async Task<List<Issue>> GetIssuesAsync(int offset)
         {
             List<Issue> issues = null;
-            HttpResponseMessage response = await client.GetAsync("/issues.json?limit=100");
+            HttpResponseMessage response = await client.GetAsync("/issues.json?limit=50&offset="+offset);
             if (response.IsSuccessStatusCode)
             {
                 IssuesResponse issuesResponse =  await response.Content.ReadAsAsync<IssuesResponse>();
                 issues = issuesResponse.issues;
-                string s = await response.Content.ReadAsStringAsync();
-                Console.WriteLine("anhlt" + s);
+                //string s = await response.Content.ReadAsStringAsync();
+                //Console.WriteLine("anhlt" + s);
+            }
+            return issues;
+        }
+        public async Task<List<Issue>> GetIssuesAsync(int offset, int projectId)
+        {
+            List<Issue> issues = null;
+            HttpResponseMessage response = await client.GetAsync("/issues.json?limit=50&offset=" + offset+ "&project_id="+projectId);
+            if (response.IsSuccessStatusCode)
+            {
+                IssuesResponse issuesResponse = await response.Content.ReadAsAsync<IssuesResponse>();
+                issues = issuesResponse.issues;
+                //string s = await response.Content.ReadAsStringAsync();
+                //Console.WriteLine("anhlt" + s);
             }
             return issues;
         }

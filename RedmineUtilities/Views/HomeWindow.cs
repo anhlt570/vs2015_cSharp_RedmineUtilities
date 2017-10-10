@@ -34,22 +34,26 @@ namespace RedmineUtilities.Views
 
         private async void loadProjects()
         {
-            Project[] projects;
+            List<Project> projects = new List<Project>();
             projects = await NetworkUtils.getInstance().GetProjectsAsync();
-            if (projects == null || projects.Length == 0) {
+            if (projects == null || projects.Capacity == 0) {
                 LoginForm loginForm = new LoginForm();
                 loginForm.Show(this);
                 return;
             }
             foreach(Project project in projects)
             {
-                this.Invoke((MethodInvoker)(() => listProjects.Items.Add(project.name)));
+                Invoke((MethodInvoker)(() => listProjects.Items.Add(project.name)));
+                
             }
+            ResourcesManager.getInstance().currentProjects = projects;
         }
 
         private async void listProjects_SelectedIndexChanged(object sender, EventArgs e)
         {
-            List<Issue> issues= await NetworkUtils.getInstance().GetIssuesAsync();
+            cleanIssues();
+            List<Project> projects = ResourcesManager.getInstance().currentProjects;
+            List<Issue> issues= await NetworkUtils.getInstance().GetIssuesAsync(0,projects[listProjects.SelectedIndex].id);
             if (issues == null || issues.Count == 0)
             {
                 LoginForm loginForm = new LoginForm();
@@ -64,6 +68,19 @@ namespace RedmineUtilities.Views
                     lvIssues.Items.Add(item);
                 }));
             }
+        }
+
+        private void cleanIssues()
+        {
+            foreach(ListViewItem item in lvIssues.Items)
+            {
+                lvIssues.Items.Remove(item);
+            }
+        }
+
+        private void btnRmAll_Click(object sender, EventArgs e)
+        {
+            cleanIssues();
         }
     }
 }

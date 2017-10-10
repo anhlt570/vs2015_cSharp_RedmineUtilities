@@ -1,8 +1,5 @@
-﻿using System;
+﻿
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RedmineUtilities.Models.project_models
 {
@@ -24,6 +21,6 @@ namespace RedmineUtilities.Models.project_models
 
     class ProjectsResponse
     {
-        public Project[] projects { get; set; }
+        public List<Project> projects { get; set; }
     }
 }

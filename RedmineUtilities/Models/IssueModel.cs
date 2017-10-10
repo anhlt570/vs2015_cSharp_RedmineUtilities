@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace RedmineUtilities.Models.issue_models
 {
-    public class PrimitiveModel
+    public class PrimitiveModel:DbContext
     {
         public int id { get; set; }
     }
